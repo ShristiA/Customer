@@ -1,0 +1,45 @@
+﻿<h2>Create</h2>
+<form class="form-horizontal" name="fromAddUser"ng-submit="createUser(user)" novalidate>
+    <h4>Create a new user</h4>
+    <hr />
+
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Name</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" name="name" ng-maxlength="32" ng-model="user.Name" required/>
+            <span class="text-danger" ng-show="fromAddUser.name.$invalid && (fromAddUser.name.$touched || fromAddUser.name.$dirty)">
+                <span ng-show="fromAddUser.name.$error.required">Name is required</span>
+                <span ng-show="fromAddUser.name.$error.maxlength">Name must be less than or equal to 32</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Email</label>
+        <div class="col-lg-10">
+            <input type="email" class="form-control" ng-model="user.Email" name="mail" ng-maxlength="50" required />
+            <span class="text-danger" ng-show="fromAddUser.mail.$invalid && (fromAddUser.mail.$touched || fromAddUser.mail.$dirty)">
+                <span ng-show="fromAddUser.mail.$error.required">Email is required</span>
+                <span ng-show="fromAddUser.mail.$error.email">Invalid Email address</span>
+                <span ng-show="fromAddUser.mail.$error.maxlength">Email must be less than or equal to 50</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Address</label>
+        <div class="col-lg-10">
+            <input type="text" class="form-control" ng-model="user.Address" name="address" ng-maxlength="50" ng-minlength="2" required  />
+            <span class="text-danger" ng-show="fromAddUser.address.$dirty && (fromAddUser.address.$error.minlength || fromAddUser.address.$error.maxlength)">        
+            Address must be between 2 to 50
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <input type="submit" class="btn btn-success" value="Create" ng-disabled="fromAddUser.$invalid"/>
+            <input type="submit" href="#/" class="btn btn-default" value="Cancel">
+        </div>
+    </div>
+</form>

@@ -1,0 +1,57 @@
+﻿<h2>User</h2>
+<a href="#/addUser" class="btn btn-primary" >Create new </a>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        list user
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group pull-left">
+                    <label>Search</label>
+                    <label>
+                        <input type="text" class="form-control" ng-model="searchText"/>
+                    </label>
+                </div>
+        </div>
+           
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th ng-click="sortBy('Name')">
+                        Name
+                        <span class="glyphicon" ng-show="sortColumn == 'Name'" ng-class="{'glyphicon-triangle-top': !reverse, 'glyphicon-triangle-bottom': reverse}"></span>
+                    </th>
+
+                    <th ng-click="sortBy('Email')">
+                        Email
+                        <span class="glyphicon" ng-show="sortColumn == 'Email'" ng-class="{'glyphicon-triangle-top': !reverse, 'glyphicon-triangle-bottom': reverse}"></span>
+                    </th>
+                    <th ng-click="sortBy('Address')">
+                        Address
+                        <span class="glyphicon" ng-show="sortColumn == 'Address'" ng-class="{'glyphicon-triangle-top': !reverse, 'glyphicon-triangle-bottom': reverse}"></span>
+                    </th>
+                    <th>#</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="i in users | filter: searchText | orderBy: sortColumn: reverse">
+                    <td>{{i.Name}}</td>
+                    <td>{{i.Email}}</td>
+                    <td>{{i.Address}}</td>
+                    <td>
+                        <a href="#/editUser/{{i.Id}}">Edit</a> |
+                        <a href="" ng-click="deleteUser(i.Id)">Delete</a>
+                    </td>
+                </tr>
+                <tr ng-if="!users|| (users| filter: searchText).length == 0">
+                    <td colspan="4" style="text-align:center">
+                         No user data to display
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
